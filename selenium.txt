@@ -1,0 +1,36 @@
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class SeleniumTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.gecko.driver", "C:\\program\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		driver.get("http://google.com");
+		WebElement query=driver.findElement(By.name("q"));
+		query.sendKeys("devops");
+		query.sendKeys(Keys.ENTER);
+
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		String result=driver.findElement(By.id("result-stats")).getText();
+		String result1=driver.getTitle();
+		String result3=driver.getCurrentUrl();
+		System.out.println(result1 + "\n");
+		System.out.println(result3 + "\n");
+		System.out.println(result + "\n");
+		try {
+			Thread.sleep(3000);
+		} catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+		driver.quit();
+	}
+}
